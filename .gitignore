@@ -1,0 +1,53 @@
+# Secrets. The API key, the SMTP password, and the sender and recipient
+# addresses all live here and nowhere else in the tree. `.env.example` records
+# the variable names and is meant to be committed.
+.env
+.env.*
+!.env.example
+
+# A local settings override, if you ever want one that is not shared.
+config/settings.local.yaml
+
+# Collected articles and what the pipeline has learned about each site.
+# Regenerable by design: a missing day is re-crawled, and losing the state file
+# costs one run to rebuild. This is why the daily job can cache it rather than
+# commit it, and why `config/sites.csv` never has to be rewritten by a bot.
+data/
+
+# Agent configuration is personal, with one exception: `webpage-parser` is this
+# project's own knowledge about reading the registry's sites, so it belongs
+# with the code it describes. Git cannot re-include a file whose parent
+# directory is excluded, which is why each level is opened before the next is
+# narrowed.
+.claude/*
+!.claude/skills/
+.claude/skills/*
+!.claude/skills/webpage-parser/
+
+# Working notes for multi-session work. Useful while building, noise once the
+# work has shipped and the reasoning has moved into CLAUDE.md and the code.
+plans/
+
+# The seed list the registry was built from: name, URL and a hand-set active
+# flag. No code reads it. `config/sites.csv` carries the same 135 sites with
+# the fetcher and parameters resolved, and is the file the pipeline uses.
+websites_sample.csv
+
+# Editor settings.
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# macOS
+.DS_Store

@@ -1,0 +1,82 @@
+name: Daily digest
+
+# Secrets required, under Settings -> Secrets and variables -> Actions:
+#   GEMINI_API_KEY   MAIL_SENDER
+#   SMTP_PASSWORD    MAIL_RECIPIENTS   (comma-separated for more than one)
+# No address appears in a tracked file.
+
+on:
+  schedule:
+    # 03:15 UTC is 12:15 KST. The window closes at 12:00 KST, and the quarter
+    # hour of margin matters: GitHub runs scheduled jobs late under load, never
+    # early, but a job that somehow started before 12:00 would compute the
+    # previous day's window and send yesterday's digest again.
+    - cron: "15 3 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Collect and rank without sending"
+        type: boolean
+        default: false
+
+# Read-only: nothing in this job writes to the repository. What a run learns
+# about each site goes to data/sites-state.json, which rides in the cache.
+permissions:
+  contents: read
+
+concurrency:
+  # Two runs at once would collect the same window twice and could send two
+  # digests. A manual run while the scheduled one is in flight waits instead.
+  group: daily-digest
+  cancel-in-progress: false
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install
+        run: pip install .
+
+      - name: Restore yesterday's data
+        # `data/` holds the collected articles and `sites-state.json`, and a
+        # miss costs a little re-crawling rather than correctness: every site
+        # is simply collected once and the state rebuilds from what the
+        # fetchers see. That is why this can be a cache and not a commit.
+        uses: actions/cache@v4
+        with:
+          path: data
+          key: digest-data-${{ github.run_id }}
+          restore-keys: digest-data-
+
+      - name: Run the digest
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          MAIL_SENDER: ${{ secrets.MAIL_SENDER }}
+          MAIL_RECIPIENTS: ${{ secrets.MAIL_RECIPIENTS }}
+        run: |
+          mkdir -p data/preview
+          it-newsletter ${{ inputs.dry_run && '--dry-run' || '' }} \
+            --preview data/preview/digest.html
+
+      - name: Upload the day's collection
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: digest-${{ github.run_number }}
+          path: |
+            data/daily/*.jsonl
+            data/sites-state.json
+            data/preview/digest.html
+            data/preview/digest.txt
+          if-no-files-found: warn
+          retention-days: 90

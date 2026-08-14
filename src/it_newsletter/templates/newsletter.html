@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ date_label }} IT Digest</title>
+</head>
+{#
+  Table-based layout with inline styles throughout. Email clients strip <style>
+  blocks and do not implement flexbox, so this is the only construction that
+  renders the same in Gmail, Outlook and Apple Mail.
+
+  Tags are bracketed monospace rather than rounded pills: corner rendering
+  differs between clients, and brackets survive into the plain-text part
+  unchanged.
+#}
+<body style="margin:0;padding:0;background:#ECEEF0;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#ECEEF0;padding:16px 0;">
+<tr><td align="center">
+
+<table width="640" cellpadding="0" cellspacing="0" border="0" style="width:640px;max-width:100%;background:#FFFFFF;font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Segoe UI','Malgun Gothic',sans-serif;color:#15181C;">
+
+  <tr>
+    <td style="padding:18px 22px 14px;border-bottom:2px solid #15181C;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+        <td><h1 style="margin:0;font-size:18px;font-weight:700;letter-spacing:-.02em;">{{ date_label }}</h1></td>
+        <td align="right" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;color:#878F98;">
+          {{ total }}건 / {{ site_count }}개 블로그
+        </td>
+      </tr></table>
+    </td>
+  </tr>
+
+  {% if not top and not rest %}
+  <tr><td style="padding:34px 22px;text-align:center;color:#59616B;font-size:14px;">
+    이 시간대에 올라온 글이 없습니다.
+  </td></tr>
+  {% endif %}
+
+  {% for item in top %}
+  <tr><td style="padding:14px 22px 13px;border-bottom:{% if loop.last %}2px solid #15181C{% else %}1px solid #EDEFF1{% endif %};">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+      <td width="26" valign="top" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;font-weight:700;color:#B0342A;padding-top:3px;">{{ loop.index }}</td>
+      <td valign="top">
+        <a href="{{ item.url }}" style="color:#15181C;font-size:15px;font-weight:700;text-decoration:none;line-height:1.35;">{{ item.title }}</a>
+        {%- if item.interests %}
+        <span style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:10.5px;color:#B0342A;white-space:nowrap;">&nbsp;{% for tag in item.interests %}[{{ tag }}]{% if not loop.last %} {% endif %}{% endfor %}</span>
+        {%- endif %}
+        {% if item.summary %}
+        <p style="margin:4px 0 0;font-size:13px;color:#2C333B;line-height:1.55;">{{ item.summary|join(' ') }}</p>
+        {% elif item.subtitle %}
+        <p style="margin:4px 0 0;font-size:13px;color:#59616B;line-height:1.55;">{{ item.subtitle[:140] }}</p>
+        {% endif %}
+        <p style="margin:4px 0 0;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:10.5px;color:#878F98;">
+          {{ item.site }}{% if item.author %} · {{ item.author }}{% endif %} · {{ item.published_at|kst }}
+        </p>
+      </td>
+    </tr></table>
+  </td></tr>
+  {% endfor %}
+
+  {% if rest %}
+  <tr><td style="padding:14px 22px 6px;">
+    <p style="margin:0;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:10px;letter-spacing:.18em;color:#878F98;">나머지 {{ rest|length }}건</p>
+  </td></tr>
+  <tr><td style="padding:0 22px 20px;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+      {% for item in rest %}
+      <tr><td style="padding:6px 0;{% if not loop.last %}border-bottom:1px solid #F1F3F4;{% endif %}">
+        <a href="{{ item.url }}" style="color:#15181C;font-size:13.5px;font-weight:600;text-decoration:none;">{{ item.title }}</a>
+        <span style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:10.5px;color:#878F98;">&nbsp;· {{ item.site }} · {{ item.published_at|kst_short }}{% if item.interests %} <span style="color:#B0342A;">{% for tag in item.interests %}[{{ tag }}]{% endfor %}</span>{% endif %}</span>
+      </td></tr>
+      {% endfor %}
+    </table>
+  </td></tr>
+  {% endif %}
+
+  <tr><td style="padding:14px 22px 18px;border-top:1px solid #E4E7EA;">
+    <p style="margin:0;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:10px;color:#878F98;line-height:1.8;">
+      관심사 {{ interests|length }}개 · 비활성 {{ inactive_count }}개 제외 · {{ window_label }}
+      {%- if failures %}<br>
+      <span style="color:#B0342A;">수집 실패 {{ failures|length }}건:</span>
+      {% for failure in failures %}{{ failure.site }}{% if not loop.last %}, {% endif %}{% endfor %}
+      {%- endif %}
+    </p>
+  </td></tr>
+
+</table>
+
+</td></tr>
+</table>
+</body>
+</html>

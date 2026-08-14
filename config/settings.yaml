@@ -1,0 +1,58 @@
+# Everything the pipeline needs that is not an interest and not a secret.
+# Secrets live in .env; the site list lives in config/sites.yaml.
+
+collection:
+  # The daily window closes at this wall-clock time, in this zone, and opens
+  # exactly 24 hours earlier. Running at 12:00 KST therefore covers
+  # yesterday 12:00 to today 12:00.
+  timezone: Asia/Seoul
+  window_end_hour: 12
+  window_hours: 24
+
+  # Per-site HTTP budget. `max_list_pages` bounds pagination when a scan asks
+  # for a range wider than one list page holds.
+  request_timeout: 30
+  delay_between_requests: 0.3
+  max_list_pages: 20
+
+  # A site whose newest post is older than this is reported inactive.
+  inactive_after_days: 180
+  # Inactive sites are still re-checked this often, so a revived blog returns.
+  recheck_inactive_every_days: 7
+
+ranking:
+  # How many articles get a body fetch and an LLM summary. Everything else is
+  # still ranked and still appears in the email as a one-line link.
+  top_k: 5
+  # Articles scoring below this are ranked but never summarized.
+  score_threshold: 5
+  # Articles per LLM request during ranking. Larger batches use less quota.
+  batch_size: 25
+
+llm:
+  # Gemini free tier. Rate limits are per minute and per day, so the ranking
+  # model should be the cheaper one.
+  ranking_model: gemini-2.5-flash-lite
+  summary_model: gemini-2.5-flash
+  # Seconds to wait between ranking batches, to stay under the per-minute limit.
+  batch_delay: 5
+
+email:
+  smtp_host: smtp.gmail.com
+  smtp_port: 587
+  sender_name: IT Digest
+  # sender_address and recipients are NOT set here. They are the only personal
+  # data in this file, so they come from MAIL_SENDER and MAIL_RECIPIENTS:
+  # .env locally, repository secrets in CI. Setting them here would work, but
+  # this file is tracked in git.
+  # Rendered into the subject line. {date}, {count}, {top_title} are available.
+  subject_format: "[IT Digest] {date} · {count}건 · {top_title} 외"
+  # Show the collection failures in the email footer, so a parser that quietly
+  # broke is visible the next morning rather than in a month.
+  show_failures: true
+
+output:
+  language: ko
+  # Where JSONL artifacts are written. Daily runs and ad-hoc scans share the
+  # layout and differ only by subdirectory.
+  data_dir: data

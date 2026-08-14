@@ -1,0 +1,117 @@
+# The only input that decides ranking. Edit this file to change what gets
+# surfaced; nothing about ranking is hardcoded elsewhere.
+#
+# Each interest has:
+#   name                  shown as the tag badge in the email, so keep it short
+#   keywords              context for the model, describing what the interest
+#                         covers. They do not gate what gets scored: every
+#                         article is read and scored, so keywords can be written
+#                         in one language while the articles arrive in another.
+#   special_instructions  optional. Narrows or excludes within this interest.
+#
+# The seed below is a starting point. Replace it with your own.
+
+interests:
+  - name: LLM Agents
+    keywords:
+      - agent
+      - agentic
+      - tool use
+      - function calling
+      - MCP
+      - Model Context Protocol
+      - orchestration
+      - multi-agent
+      - workflow automation
+      - LangChain
+      - LangGraph
+      - autonomous
+      - planning
+    special_instructions: >-
+      Prefer posts that report what happened when an agent was actually put in
+      front of users or into production: failure modes, guardrails, cost, and
+      latency. Deprioritize framework tutorials and "we built a chatbot" posts.
+
+  - name: Inference & Serving
+    keywords:
+      - inference
+      - serving
+      - latency
+      - throughput
+      - quantization
+      - KV cache
+      - vLLM
+      - TensorRT
+      - GPU
+      - batching
+      - cost reduction
+      - model compression
+      - distillation
+      - on-device
+
+  - name: Evaluation & Reliability
+    keywords:
+      - evaluation
+      - eval
+      - benchmark
+      - hallucination
+      - factuality
+      - grounding
+      - guardrail
+      - LLM as a judge
+      - A/B test
+      - experimentation
+      - regression test
+      - quality metric
+      - observability
+
+  - name: RAG & Search
+    keywords:
+      - RAG
+      - retrieval
+      - retrieval-augmented
+      - embedding
+      - vector
+      - vector database
+      - reranking
+      - semantic search
+      - indexing
+      - Elasticsearch
+      - OpenSearch
+      - chunking
+
+  - name: Data Pipelines
+    keywords:
+      - data pipeline
+      - Airflow
+      - Spark
+      - Kafka
+      - streaming
+      - ETL
+      - data warehouse
+      - data lake
+      - dbt
+      - feature store
+      - data quality
+      - batch processing
+
+  - name: Speech & Conversation
+    keywords:
+      - speech
+      - STT
+      - TTS
+      - ASR
+      - speech recognition
+      - speech synthesis
+      - voice
+      - voice agent
+      - conversational
+      - real-time audio
+      - turn-taking
+      - full-duplex
+
+# Applied on top of every interest. Use for cross-cutting preferences.
+special_instructions: >-
+  Prefer posts that describe a real system in operation over introductions and
+  surveys. A post that reports numbers, an incident, a migration, or a decision
+  that was reversed is worth more than one that explains a concept well.

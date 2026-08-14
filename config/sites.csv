@@ -1,0 +1,136 @@
+name,url,fetcher,source_url,tz,params,enabled,note
+NAVER Cloud,https://medium.com/naver-cloud-platform,feed,https://medium.com/feed/naver-cloud-platform,,,1,
+NAVER PLACE,https://medium.com/naver-place-dev,feed,https://medium.com/feed/naver-place-dev,,,1,
+NAVER DnA,https://medium.com/naver-dna-tech-blog,feed,https://medium.com/feed/naver-dna-tech-blog,,,1,
+카카오스타일,https://devblog.kakaostyle.com/,feed,https://devblog.kakaostyle.com/ko/index.xml,Asia/Seoul,,1,
+카카오엔터테인먼트 FE,https://fe-developers.kakaoent.com/,feed,https://fe-developers.kakaoent.com/rss.xml,Asia/Seoul,,0,unreachable: domain 404s everywhere; the blog was retired
+카카오엔터프라이즈,https://tech.kakaoenterprise.com/,feed,https://tech.kakaoenterprise.com/feed,Asia/Seoul,,1,
+쿠팡,https://medium.com/coupang-engineering,feed,https://medium.com/feed/coupang-engineering,,,1,
+G마켓,https://dev.gmarket.com/,feed,https://ebay-korea.tistory.com/rss,Asia/Seoul,,1,
+11번가,https://11st-tech.github.io/,feed,https://11st-tech.github.io/rss/,Asia/Seoul,,1,
+백패커,https://medium.com/idus-tech,feed,https://medium.com/feed/idus-tech,,,1,
+티맵모빌리티,https://brunch.co.kr/@tmapmobility,feed,https://brunch.co.kr/@tmapmobility,Asia/Seoul,,0,unreachable: brunch.co.kr redirects to a Kakao login
+펫프렌즈,https://techblog.pet-friends.co.kr/,feed,https://techblog.pet-friends.co.kr/feed,Asia/Seoul,,1,
+Tinder,https://medium.com/tinder,feed,https://medium.com/feed/tinder,,,1,
+KRAFTON,https://krafton-ai.github.io/blog/,embedded,https://krafton-ai.github.io/blog/,Asia/Seoul,"{""source"": ""js_literal"", ""variable"": ""POSTS"", ""field_map"": {""title"": ""title_kr"", ""date"": ""date_kr"", ""url"": ""file_kr"", ""subtitle"": ""excerpt_kr""}}",1,single page holding a const POSTS JavaScript array; bilingual fields so the Korean ones are named explicitly
+NAVER,https://d2.naver.com/,feed,https://d2.naver.com/d2.atom,Asia/Seoul,,1,feed path is /d2.atom; no generic guess finds it
+NAVER CLOVA,https://clova.ai/tech-blog,embedded,https://clova.ai/tech-blog,Asia/Seoul,"{""source"": ""next_data"", ""url_template"": ""https://clova.ai/tech-blog/{slug}""}",1,GraphQL edges/node under __NEXT_DATA__; records carry a slug not a URL
+카카오,https://tech.kakao.com/,feed,https://tech.kakao.com/feed,Asia/Seoul,,1,
+카카오뱅크,https://tech.kakaobank.com/,feed,https://tech.kakaobank.com/index.xml,Asia/Seoul,,1,
+카카오페이,https://tech.kakaopay.com/,html_list,https://tech.kakaopay.com/,Asia/Seoul,"{""article_regex"": ""/post/[^/]+"", ""date_from"": ""detail"", ""title_strip"": "" | 카카오페이 기술 블로그"", ""page_url"": ""https://tech.kakaopay.com/page/{page}/""}",1,rss.xml is valid RSS with zero items; date only in <time>
+카카오모빌리티,https://developers.kakaomobility.com/techblogs/,html_list,https://developers.kakaomobility.com/techblogs/,Asia/Seoul,"{""article_regex"": ""/[^/]+/[^/]+\\.html"", ""date_from"": ""list""}",1,list cards carry dates as 2026.07.22
+토스,https://toss.tech/,feed,https://toss.tech/rss.xml,Asia/Seoul,,1,
+우아한형제들,https://techblog.woowahan.com/,feed,https://techblog.woowahan.com/feed/,Asia/Seoul,,1,
+당근,https://medium.com/daangn,feed,https://medium.com/feed/daangn,,,1,publishes the same post in Korean and English; dedupe keeps both
+컬리,https://helloworld.kurly.com/,feed,https://helloworld.kurly.com/rss.xml,Asia/Seoul,,1,
+무신사,https://techblog.musinsa.com/,feed,https://techblog.musinsa.com/feed,,,1,Medium on a custom domain
+롯데ON,https://techblog.lotteon.com/,feed,https://techblog.lotteon.com/feed,,,1,Medium on a custom domain
+CJ올리브영,https://oliveyoung.tech/,feed,https://oliveyoung.tech/rss.xml,Asia/Seoul,,1,
+요기요,https://techblog.yogiyo.co.kr/,feed,https://techblog.yogiyo.co.kr/feed,Asia/Seoul,,1,
+여기어때,https://techblog.gccompany.co.kr/,feed,https://techblog.gccompany.co.kr/feed,Asia/Seoul,,1,
+야놀자클라우드,https://www.yanoljagroup.com/ko/blog,html_list,https://www.yanoljagroup.com/ko/blog,Asia/Seoul,"{""article_regex"": ""^/ko/blog/[^/]+/?$"", ""date_from"": ""detail""}",1,unparsed: /ko/blog lists no article links; the listing is client-side
+마이리얼트립,https://blog.myrealtrip.com/,feed,https://blog.myrealtrip.com/rss/,Asia/Seoul,,1,
+쏘카,https://tech.socarcorp.kr/,feed,https://tech.socarcorp.kr/rss.xml,Asia/Seoul,,1,
+더스윙,https://www.theswing.tech/,feed,https://www.theswing.tech/rss/,Asia/Seoul,,1,
+드라마앤컴퍼니,https://tech.remember.co.kr/,feed,https://tech.remember.co.kr/feed,Asia/Seoul,,1,
+원티드랩,https://medium.com/wantedjobs,feed,https://medium.com/feed/wantedjobs,,,1,
+사람인,https://saramin.github.io/,feed,https://saramin.github.io/feed,Asia/Seoul,,1,
+인프랩,https://tech.inflab.com/,feed,https://tech.inflab.com/rss.xml,Asia/Seoul,,1,
+리디,https://ridicorp.com/story-category/tech-blog/,feed,https://ridicorp.com/feed/,Asia/Seoul,,1,
+왓챠,https://medium.com/watcha,feed,https://medium.com/feed/watcha,,,1,
+포스타입,https://team.postype.com/,feed,https://team.postype.com/rss,Asia/Seoul,,1,
+더핑크퐁컴퍼니,https://medium.com/pinkfong,feed,https://medium.com/feed/pinkfong,,,1,
+데브시스터즈,https://tech.devsisters.com/,feed,https://tech.devsisters.com/rss.xml,Asia/Seoul,,1,
+버즈빌,https://tech.buzzvil.com/,feed,https://tech.buzzvil.com/feed.xml,Asia/Seoul,,1,
+AB180,https://engineering.ab180.co/,html_list,https://engineering.ab180.co/,,"{""article_regex"": ""^/[^/]+/?$"", ""date_from"": ""list""}",1,
+뷰저블,https://www.beusable.net/blog/,feed,https://www.beusable.net/blog/?feed=rss2,Asia/Seoul,,1,
+NHN,https://meetup.nhncloud.com/,feed,https://meetup.nhncloud.com/rss,Asia/Seoul,,1,
+SK플래닛,https://techtopic.skplanet.com/,feed,https://techtopic.skplanet.com/rss.xml,Asia/Seoul,,1,
+SK텔레콤 DEVOCEAN,https://devocean.sk.com/,html_list,https://devocean.sk.com/,Asia/Seoul,"{""article_regex"": ""^/[^/]+/[^/]+\\.do/?$"", ""date_from"": ""list""}",1,unparsed: posts sit behind .do endpoints with no article metadata
+삼성전자,https://techblog.samsung.com/,feed,https://techblog.samsung.com/rss,Asia/Seoul,,1,
+삼성SDS(insight),https://www.samsungsds.com/kr/insights/index.html,html_list,https://www.samsungsds.com/kr/insights/index.html,Asia/Seoul,"{""article_regex"": ""^/kr/[^/]+/[^/]+\\.html/?$"", ""date_from"": ""detail"", ""title_strip"": "" | 인사이트리포트 | 삼성SDS""}",1,
+삼성SDS,https://www.samsungsds.com/en/research-blog/index.html,html_list,https://www.samsungsds.com/en/research-blog/index.html,Asia/Seoul,"{""article_regex"": ""^/en/[^/]+/[^/]+\\.html/?$"", ""date_from"": ""list""}",1,unparsed: English research-blog listing exposes no article links
+LG CNS,https://www.lgcns.com/kr/moa/insight,html_list,https://www.lgcns.com/kr/moa/insight,Asia/Seoul,"{""article_regex"": ""^/kr/moa/[^/]+/[^/]+/?$"", ""date_from"": ""list""}",1,unparsed: listing is built client-side; no article links in the HTML
+한글과컴퓨터,https://tech.hancom.com/,feed,https://tech.hancom.com/feed/,Asia/Seoul,,1,
+클라우드메이트,https://tech.cloudmt.co.kr/,feed,https://techblog.ahnlabcloudmate.com/rss/,Asia/Seoul,,1,
+농심데이터시스템,https://tech.cloud.nongshim.co.kr/Post/,feed,https://tech.cloud.nongshim.co.kr/feed/,Asia/Seoul,,1,
+하이퍼커넥트,https://hyperconnect.github.io/,feed,https://hyperconnect.github.io/feed.xml,Asia/Seoul,,1,
+센드버드,https://sendbird.com/ko/blog,html_list,https://sendbird.com/ko/blog,,"{""article_regex"": ""^/ko/blog/[^/]+/?$"", ""date_from"": ""detail""}",1,"posts date themselves on a JSON-LD WebPage node, not an Article one"
+스포카,https://spoqa.github.io/,feed,https://spoqa.github.io/atom.xml,Asia/Seoul,,1,
+타다,https://blog-tech.tadatada.com/,embedded,https://blog-tech.tadatada.com/,Asia/Seoul,"{""source"": ""rsc"", ""url_template"": ""https://blog-tech.tadatada.com/articles/{slug}""}",1,article list lives deep in the RSC payload; records carry a slug
+바비톡,https://medium.com/babitalk-blog,feed,https://medium.com/feed/babitalk-blog,,,1,
+비브로스(굿닥),https://boostbrothers.github.io/,feed,https://boostbrothers.github.io/rss.xml,,,1,
+화해,https://blog.hwahae.co.kr/,feed,https://blog.hwahae.co.kr/rss.xml,Asia/Seoul,,1,
+AITRICS,https://medium.com/aitrics,feed,https://medium.com/feed/aitrics,,,1,
+뱅크샐러드,https://blog.banksalad.com/,feed,https://blog.banksalad.com/rss.xml,Asia/Seoul,,1,
+마키나락스,https://makinarocks.github.io/,feed,https://makinarocks.github.io/feed,,,1,
+하이퍼엑셀,https://hyper-accel.github.io/,feed,https://hyper-accel.github.io/index.xml,,,1,
+업스테이지,https://www.upstage.ai/blog,html_list,https://www.upstage.ai/blog,Asia/Seoul,"{""article_regex"": ""^/blog/en/[^/]+/?$"", ""date_from"": ""list""}",1,
+래블업,https://www.lablup.com/blog,html_list,https://www.lablup.com/blog,Asia/Seoul,"{""article_regex"": ""^/blog/[^/]+/[^/]+/?$"", ""date_from"": ""detail""}",1,
+Sionic AI,https://blog.sionic.ai/,html_list,https://blog.sionic.ai/,Asia/Seoul,"{""article_regex"": ""^/[^/]+/?$"", ""date_from"": ""list""}",1,unparsed: no URL shape on the page resolves to an article
+인포그랩,https://insight.infograb.net/blog/,feed,https://insight.infograb.net/blog/rss.xml,Asia/Seoul,,1,
+레몬베이스,https://blog.lemonbase.team/,feed,https://blog.lemonbase.team/feed,Asia/Seoul,,1,
+OpenAI,https://openai.com/research/,feed,https://openai.com/news/rss.xml,,,1,one feed covers news and research; filter by URL if research-only is wanted
+Anthropic,https://www.anthropic.com/research,html_list,https://www.anthropic.com/research,,"{""article_regex"": ""/research/[^/]+"", ""date_from"": ""list"", ""extra_sources"": [{""url"": ""https://www.anthropic.com/news"", ""article_regex"": ""/news/[^/]+"", ""title_strip"": "" | Anthropic""}]}",1,app-router RSC payload holds no clean record list; the rendered cards carry Aug 10 2026 style dates. research and news are separate sections with different URL shapes
+Google,https://developers.googleblog.com/,feed,https://developers.googleblog.com/feed,,"{""date_from"": ""detail""}",1,feed items carry no date element at all; the date is JSON-LD on the article page
+Google Research,https://research.google/blog/,feed,https://research.google/blog/rss,,,1,feed description carries the category label rather than a real subtitle
+Google DeepMind,https://deepmind.google/discover/blog/,feed,https://deepmind.google/discover/blog/feed,,,1,
+Meta,https://engineering.fb.com/,feed,https://engineering.fb.com/feed/,,,1,author field is present but empty
+Apple ML Research,https://machinelearning.apple.com/,feed,https://machinelearning.apple.com/rss.xml,,,1,
+Microsoft,https://devblogs.microsoft.com/,feed,https://devblogs.microsoft.com/feed,,,1,
+AWS,https://aws.amazon.com/blogs/architecture/,feed,https://aws.amazon.com/blogs/architecture/feed/,,,1,
+Amazon Science,https://www.amazon.science/blog,html_list,https://www.amazon.science/blog,,"{""article_regex"": ""^/[^/]+/[^/]+/?$"", ""date_from"": ""list""}",1,
+NVIDIA,https://developer.nvidia.com/blog/,feed,https://developer.nvidia.com/blog/feed,,,1,
+Netflix,https://netflixtechblog.com/,feed,https://netflixtechblog.com/feed,,,1,Medium on a custom domain
+Spotify,https://engineering.atspotify.com/,feed,https://engineering.atspotify.com/feed,,,1,
+Airbnb,https://airbnb.tech/,feed,https://airbnb.tech/feed/,,,1,
+Uber,https://www.uber.com/blog/engineering/,html_list,https://www.uber.com/blog/engineering/,,"{""article_regex"": ""^/kr/ko/blog/[^/]+/?$"", ""date_from"": ""list""}",1,
+Lyft,https://eng.lyft.com/,feed,https://eng.lyft.com/feed,,,1,
+DoorDash,https://doordash.engineering/,feed,https://careersatdoordash.com/feed/,,,1,
+Instacart,https://tech.instacart.com/,feed,https://tech.instacart.com/feed,,,1,
+Grab,https://engineering.grab.com/,feed,https://engineering.grab.com/feed.xml,,,1,
+LinkedIn,https://engineering.linkedin.com/blog,html_list,https://www.linkedin.com/blog/engineering/research,,"{""article_regex"": ""^/blog/engineering/[^/]+/[^/]+$"", ""date_from"": ""list"", ""extra_sources"": [""https://www.linkedin.com/blog/engineering/data-science"", ""https://www.linkedin.com/blog/engineering/recommendations"", ""https://www.linkedin.com/blog/engineering/natural-language-processing"", ""https://www.linkedin.com/blog/engineering/responsible-ai"", ""https://www.linkedin.com/blog/engineering/distributed-systems"", ""https://www.linkedin.com/blog/engineering/data-streaming-processing"", ""https://www.linkedin.com/blog/engineering/scalability""]}",1,index is client-side and so are the AI-named sections; these eight category pages are server-rendered and date their cards
+Pinterest,https://medium.com/@Pinterest_Engineering,feed,https://medium.com/feed/@Pinterest_Engineering,,,1,
+Slack,https://slack.engineering/,feed,https://slack.engineering/feed,,,1,
+Dropbox,https://dropbox.tech/,feed,https://dropbox.tech/feed,,,1,
+GitHub,https://github.blog/engineering/,feed,https://github.blog/feed/,,,1,
+GitLab,https://about.gitlab.com/blog/categories/engineering/,feed,https://about.gitlab.com/releases.xml,,,1,
+Atlassian,https://www.atlassian.com/engineering,feed,https://www.atlassian.com/blog/comments/feed,,,1,
+Notion,https://www.notion.com/blog/topic/engineering,html_list,https://www.notion.com/ko/blog/topic/engineering,,"{""article_regex"": ""^/ko/blog/[^/]+/?$"", ""date_from"": ""detail""}",1,serves the Korean locale because Accept-Language asks for it; paths carry /ko
+Figma,https://www.figma.com/blog/engineering/,html_list,https://www.figma.com/blog/everything/,,"{""article_regex"": ""^/blog/[^/]+/?$"", ""date_from"": ""detail"", ""title_strip"": "" | Figma Blog"", ""max_articles"": 90}",1,"listing puts its category links first, so the article budget has to clear them"
+Canva,https://www.canva.dev/blog/engineering/,feed,https://www.canva.dev/blog/engineering/feed.xml,,,1,
+Shopify,https://shopify.engineering/,html_list,https://shopify.engineering/,,"{""article_regex"": ""^/[^/]+/?$"", ""date_from"": ""detail"", ""title_strip"": "" - Shopify""}",1,unparsed: listing is client-side; the sitemap has no per-post lastmod either
+Plaid,https://plaid.com/blog/,feed,https://plaid.com/blog/rss.xml,,,1,
+Wise,https://medium.com/wise-engineering,feed,https://medium.com/feed/wise-engineering,,,1,
+Monzo,https://monzo.com/blog/technology,feed,https://monzo.com/feed.xml,,,1,
+Databricks,https://www.databricks.com/blog/category/engineering,feed,https://www.databricks.com/blog/category/engineering/feed.xml,,,1,
+Snowflake,https://www.snowflake.com/en/engineering-blog/,feed,https://www.snowflake.com/feed,,,1,
+Confluent,https://www.confluent.io/blog/,feed,https://www.confluent.io/rss.xml,,,1,
+Elastic,https://www.elastic.co/blog/,feed,https://www.elastic.co/blog/feed,,,1,
+ClickHouse,https://clickhouse.com/blog/,feed,https://clickhouse.com/rss.xml,,,1,
+Cockroach Labs,https://www.cockroachlabs.com/blog/,feed,https://www.cockroachlabs.com/rss.xml,,,1,
+TigerData,https://www.tigerdata.com/blog,feed,https://www.tigerdata.com/blog/feed,,,1,
+MongoDB,https://www.mongodb.com/blog,feed,https://www.mongodb.com/blog/rss,,,1,
+Redis,https://redis.io/blog/,feed,https://redis.io/blog/feed,,,1,
+Neo4j,https://neo4j.com/blog/,feed,https://neo4j.com/blog/feed,,,1,
+Supabase,https://supabase.com/blog,feed,https://supabase.com/rss.xml,,,1,
+Docker,https://www.docker.com/blog/,feed,https://www.docker.com/feed/,,,1,
+Red Hat,https://developers.redhat.com/articles,feed,https://developers.redhat.com/blog/feed,,,1,
+JetBrains,https://blog.jetbrains.com/,feed,https://blog.jetbrains.com/feed/,,,1,
+Datadog,https://www.datadoghq.com/blog/engineering/,feed,https://www.datadoghq.com/blog/engineering/index.xml,,,1,
+Grafana Labs,https://grafana.com/blog/,feed,https://grafana.com/blog/index.xml,,,1,
+Salesforce,https://engineering.salesforce.com/,feed,https://engineering.salesforce.com/feed/,,,1,
+Palantir,https://blog.palantir.com/,feed,https://blog.palantir.com/feed,,,1,
+Hugging Face,https://huggingface.co/blog,feed,https://huggingface.co/blog/feed.xml,,,1,
+LangChain,https://www.langchain.com/blog,feed,https://www.langchain.com/blog/rss.xml,,,1,
+LlamaIndex,https://www.llamaindex.ai/blog,html_list,https://www.llamaindex.ai/blog,,"{""article_regex"": ""^/blog/[^/]+/?$"", ""date_from"": ""list""}",1,
+Cohere,https://cohere.com/blog,html_list,https://cohere.com/blog,,"{""article_regex"": ""^/blog/[^/]+/?$"", ""date_from"": ""detail""}",1,
+Mistral AI,https://mistral.ai/news,feed,https://mistral.ai/news/rss,,,1,
+Together AI,https://www.together.ai/blog,feed,https://www.together.ai/blog/rss.xml,,,1,
+Replicate,https://replicate.com/blog,feed,https://replicate.com/blog/rss,,,1,
+Weights & Biases,https://wandb.ai/fully-connected,feed,https://wandb.ai/fully-connected/rss.xml,,,1,
+Perplexity,https://www.perplexity.ai/hub/blog,html_list,https://www.perplexity.ai/hub/blog,,"{""article_regex"": ""^/hub/blog/[^/]+/?$"", ""date_from"": ""list""}",1,
+ElevenLabs,https://elevenlabs.io/blog,html_list,https://elevenlabs.io/blog,,"{""article_regex"": ""^/blog/[^/]+/?$"", ""date_from"": ""detail""}",1,
+Instagram,https://about.instagram.com/blog/,feed,https://about.instagram.com/feed,,,1,
+Medium,https://medium.engineering/,feed,https://medium.engineering/feed,,,1,
+Indeed,https://engineering.indeedblog.com/,feed,https://engineering.indeedblog.com/feed/,,,1,
