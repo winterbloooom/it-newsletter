@@ -19,8 +19,44 @@ from dotenv import load_dotenv
 
 from it_newsletter.models import AppConfig, InterestsConfig, Settings, Site
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
-CONFIG_DIR = REPO_ROOT / "config"
+ENV_ROOT = "IT_NEWSLETTER_ROOT"
+
+
+def _project_root() -> Path:
+    """The directory holding `config/` and `data/`.
+
+    Found by searching outward from the working directory, not by walking up
+    from this module. The module-relative form happened to work locally, where
+    the package is installed editable and still sits inside the source tree,
+    and broke the first time CI ran `pip install .`: the code then lives in
+    site-packages and two levels up is `lib/python3.11`.
+
+    That is the right model anyway. The config is a set of files a person edits
+    and commits, so it belongs to the project being run, not to the copy of the
+    code that happens to be running it.
+    """
+    override = os.environ.get(ENV_ROOT)
+    if override:
+        return Path(override).expanduser().resolve()
+
+    here = Path.cwd().resolve()
+    for candidate in (here, *here.parents):
+        if (candidate / "config" / "settings.yaml").is_file():
+            return candidate
+
+    # An editable install invoked from outside the tree still knows where its
+    # source lives, so try that before giving up.
+    source_root = Path(__file__).resolve().parents[2]
+    if (source_root / "config" / "settings.yaml").is_file():
+        return source_root
+
+    # Nothing found: return the working directory so the error names the place
+    # the user is actually standing rather than a path inside the interpreter.
+    return here
+
+
+PROJECT_ROOT = _project_root()
+CONFIG_DIR = PROJECT_ROOT / "config"
 
 SETTINGS_PATH = CONFIG_DIR / "settings.yaml"
 INTERESTS_PATH = CONFIG_DIR / "interests.yaml"
@@ -31,7 +67,11 @@ SITE_COLUMNS = ["name", "url", "fetcher", "source_url", "tz", "params", "enabled
 
 def _read_yaml(path: Path) -> dict:
     if not path.exists():
-        raise FileNotFoundError(f"Config file not found: {path}")
+        raise FileNotFoundError(
+            f"Config file not found: {path}\n"
+            f"Looked under {PROJECT_ROOT}. Run from the project directory, or "
+            f"set {ENV_ROOT} to it."
+        )
     with path.open(encoding="utf-8") as f:
         return yaml.safe_load(f) or {}
 
@@ -98,7 +138,7 @@ def save_sites(sites: list[Site], path: Path = SITES_PATH) -> None:
 
 def load_config() -> AppConfig:
     """Load and validate settings, interests, and the site registry."""
-    load_dotenv(REPO_ROOT / ".env")
+    load_dotenv(PROJECT_ROOT / ".env")
     settings = Settings(**_read_yaml(SETTINGS_PATH))
     _apply_mail_identity(settings)
     return AppConfig(

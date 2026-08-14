@@ -59,6 +59,9 @@ jobs:
 
       - name: Run the digest
         env:
+          # The config and data directories belong to the checkout, not to the
+          # site-packages copy of the code that `pip install .` creates.
+          IT_NEWSLETTER_ROOT: ${{ github.workspace }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
           MAIL_SENDER: ${{ secrets.MAIL_SENDER }}

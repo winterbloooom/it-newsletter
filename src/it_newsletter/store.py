@@ -20,7 +20,7 @@ import re
 from datetime import date, datetime, timedelta
 from pathlib import Path
 
-from it_newsletter.config import REPO_ROOT
+from it_newsletter.config import PROJECT_ROOT
 from it_newsletter.models import Article
 
 DAILY_DIR = "daily"
@@ -29,7 +29,7 @@ SCAN_DIR = "scan"
 
 def data_root(data_dir: str) -> Path:
     path = Path(data_dir)
-    return path if path.is_absolute() else REPO_ROOT / path
+    return path if path.is_absolute() else PROJECT_ROOT / path
 
 
 def daily_path(data_dir: str, day: date) -> Path:
