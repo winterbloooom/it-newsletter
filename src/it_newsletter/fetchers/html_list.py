@@ -31,6 +31,7 @@ from urllib.parse import urljoin, urlsplit
 from it_newsletter.fetchers._common import (
     Http,
     NAV_SEGMENTS,
+    locale_variants,
     canonical_url,
     html_soup,
     page_meta,
@@ -165,7 +166,9 @@ def _list_entries(
     for anchor in soup.find_all("a", href=True):
         absolute = urljoin(base, anchor["href"])
         parts = urlsplit(absolute)
-        if parts.netloc != host or not pattern.search(parts.path):
+        if parts.netloc != host:
+            continue
+        if not any(pattern.search(v) for v in locale_variants(parts.path)):
             continue
         # An inferred pattern matches author and tag pages too, and those are
         # dated and titled just like posts, so nothing downstream rejects them.

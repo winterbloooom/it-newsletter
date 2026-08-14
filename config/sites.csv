@@ -20,7 +20,7 @@ NAVER CLOVA,https://clova.ai/tech-blog,embedded,https://clova.ai/tech-blog,Asia/
 카카오페이,https://tech.kakaopay.com/,html_list,https://tech.kakaopay.com/,Asia/Seoul,"{""article_regex"": ""/post/[^/]+"", ""date_from"": ""detail"", ""title_strip"": "" | 카카오페이 기술 블로그"", ""page_url"": ""https://tech.kakaopay.com/page/{page}/""}",1,rss.xml is valid RSS with zero items; date only in <time>
 카카오모빌리티,https://developers.kakaomobility.com/techblogs/,html_list,https://developers.kakaomobility.com/techblogs/,Asia/Seoul,"{""article_regex"": ""/[^/]+/[^/]+\\.html"", ""date_from"": ""list""}",1,list cards carry dates as 2026.07.22
 토스,https://toss.tech/,feed,https://toss.tech/rss.xml,Asia/Seoul,,1,
-우아한형제들,https://techblog.woowahan.com/,feed,https://techblog.woowahan.com/feed/,Asia/Seoul,,1,
+우아한형제들,https://techblog.woowahan.com/,feed,https://techblog.woowahan.com/feed/,Asia/Seoul,,1,unreachable from CI: 403 to datacenter addresses; collects fine from Korea
 당근,https://medium.com/daangn,feed,https://medium.com/feed/daangn,,,1,publishes the same post in Korean and English; dedupe keeps both
 컬리,https://helloworld.kurly.com/,feed,https://helloworld.kurly.com/rss.xml,Asia/Seoul,,1,
 무신사,https://techblog.musinsa.com/,feed,https://techblog.musinsa.com/feed,,,1,Medium on a custom domain
@@ -55,7 +55,7 @@ LG CNS,https://www.lgcns.com/kr/moa/insight,html_list,https://www.lgcns.com/kr/m
 클라우드메이트,https://tech.cloudmt.co.kr/,feed,https://techblog.ahnlabcloudmate.com/rss/,Asia/Seoul,,1,
 농심데이터시스템,https://tech.cloud.nongshim.co.kr/Post/,feed,https://tech.cloud.nongshim.co.kr/feed/,Asia/Seoul,,1,
 하이퍼커넥트,https://hyperconnect.github.io/,feed,https://hyperconnect.github.io/feed.xml,Asia/Seoul,,1,
-센드버드,https://sendbird.com/ko/blog,html_list,https://sendbird.com/ko/blog,,"{""article_regex"": ""^/ko/blog/[^/]+/?$"", ""date_from"": ""detail""}",1,"posts date themselves on a JSON-LD WebPage node, not an Article one"
+센드버드,https://sendbird.com/ko/blog,html_list,https://sendbird.com/ko/blog,,"{""article_regex"": ""^/blog/[^/]+/?$"", ""date_from"": ""detail""}",1,"posts date themselves on a JSON-LD WebPage node, not an Article one"
 스포카,https://spoqa.github.io/,feed,https://spoqa.github.io/atom.xml,Asia/Seoul,,1,
 타다,https://blog-tech.tadatada.com/,embedded,https://blog-tech.tadatada.com/,Asia/Seoul,"{""source"": ""rsc"", ""url_template"": ""https://blog-tech.tadatada.com/articles/{slug}""}",1,article list lives deep in the RSC payload; records carry a slug
 바비톡,https://medium.com/babitalk-blog,feed,https://medium.com/feed/babitalk-blog,,,1,
@@ -84,9 +84,9 @@ NVIDIA,https://developer.nvidia.com/blog/,feed,https://developer.nvidia.com/blog
 Netflix,https://netflixtechblog.com/,feed,https://netflixtechblog.com/feed,,,1,Medium on a custom domain
 Spotify,https://engineering.atspotify.com/,feed,https://engineering.atspotify.com/feed,,,1,
 Airbnb,https://airbnb.tech/,feed,https://airbnb.tech/feed/,,,1,
-Uber,https://www.uber.com/blog/engineering/,html_list,https://www.uber.com/blog/engineering/,,"{""article_regex"": ""^/kr/ko/blog/[^/]+/?$"", ""date_from"": ""list""}",1,
+Uber,https://www.uber.com/blog/engineering/,html_list,https://www.uber.com/blog/engineering/,,"{""article_regex"": ""^/blog/[^/]+/?$"", ""date_from"": ""list""}",1,"localizes by IP: /kr/ko/blog/... from Seoul, /blog/... elsewhere"
 Lyft,https://eng.lyft.com/,feed,https://eng.lyft.com/feed,,,1,
-DoorDash,https://doordash.engineering/,feed,https://careersatdoordash.com/feed/,,,1,
+DoorDash,https://doordash.engineering/,feed,https://careersatdoordash.com/feed/,,,1,unreachable from CI: 403 to datacenter addresses; collects fine from Korea
 Instacart,https://tech.instacart.com/,feed,https://tech.instacart.com/feed,,,1,
 Grab,https://engineering.grab.com/,feed,https://engineering.grab.com/feed.xml,,,1,
 LinkedIn,https://engineering.linkedin.com/blog,html_list,https://www.linkedin.com/blog/engineering/research,,"{""article_regex"": ""^/blog/engineering/[^/]+/[^/]+$"", ""date_from"": ""list"", ""extra_sources"": [""https://www.linkedin.com/blog/engineering/data-science"", ""https://www.linkedin.com/blog/engineering/recommendations"", ""https://www.linkedin.com/blog/engineering/natural-language-processing"", ""https://www.linkedin.com/blog/engineering/responsible-ai"", ""https://www.linkedin.com/blog/engineering/distributed-systems"", ""https://www.linkedin.com/blog/engineering/data-streaming-processing"", ""https://www.linkedin.com/blog/engineering/scalability""]}",1,index is client-side and so are the AI-named sections; these eight category pages are server-rendered and date their cards
@@ -96,7 +96,7 @@ Dropbox,https://dropbox.tech/,feed,https://dropbox.tech/feed,,,1,
 GitHub,https://github.blog/engineering/,feed,https://github.blog/feed/,,,1,
 GitLab,https://about.gitlab.com/blog/categories/engineering/,feed,https://about.gitlab.com/releases.xml,,,1,
 Atlassian,https://www.atlassian.com/engineering,feed,https://www.atlassian.com/blog/comments/feed,,,1,
-Notion,https://www.notion.com/blog/topic/engineering,html_list,https://www.notion.com/ko/blog/topic/engineering,,"{""article_regex"": ""^/ko/blog/[^/]+/?$"", ""date_from"": ""detail""}",1,serves the Korean locale because Accept-Language asks for it; paths carry /ko
+Notion,https://www.notion.com/blog/topic/engineering,html_list,https://www.notion.com/ko/blog/topic/engineering,,"{""article_regex"": ""^/blog/[^/]+/?$"", ""date_from"": ""detail""}",1,serves the Korean locale because Accept-Language asks for it; paths carry /ko
 Figma,https://www.figma.com/blog/engineering/,html_list,https://www.figma.com/blog/everything/,,"{""article_regex"": ""^/blog/[^/]+/?$"", ""date_from"": ""detail"", ""title_strip"": "" | Figma Blog"", ""max_articles"": 90}",1,"listing puts its category links first, so the article budget has to clear them"
 Canva,https://www.canva.dev/blog/engineering/,feed,https://www.canva.dev/blog/engineering/feed.xml,,,1,
 Shopify,https://shopify.engineering/,html_list,https://shopify.engineering/,,"{""article_regex"": ""^/[^/]+/?$"", ""date_from"": ""detail"", ""title_strip"": "" - Shopify""}",1,unparsed: listing is client-side; the sitemap has no per-post lastmod either

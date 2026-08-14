@@ -70,6 +70,33 @@ NAV_SEGMENTS = frozenset({
 })
 
 
+# A leading path segment that names a language or country: `ko`, `kr`, `en-US`.
+_LOCALE_SEGMENT = re.compile(r"^[a-z]{2}(?:[-_][A-Za-z]{2,4})?$")
+MAX_LOCALE_PREFIXES = 2
+
+
+def locale_variants(path: str) -> list[str]:
+    """The path, plus the same path with its leading locale prefixes removed.
+
+    Sites localize by IP as well as by header, so the same blog answers
+    `/kr/ko/blog/<slug>` to a request from Seoul and something else to one from
+    a US datacenter. A pattern inferred in one place then matches nothing in
+    the other, which is how uber.com came to carry `^/kr/ko/blog/[^/]+/?$` in
+    the registry and collect zero articles in CI.
+
+    Matching every variant lets a registry pattern be written locale-free and
+    still work wherever the run happens.
+    """
+    variants = [path]
+    segments = [s for s in path.split("/") if s]
+    for _ in range(MAX_LOCALE_PREFIXES):
+        if not segments or not _LOCALE_SEGMENT.match(segments[0]):
+            break
+        segments = segments[1:]
+        variants.append("/" + "/".join(segments))
+    return variants
+
+
 class Http:
     """A small HTTP client over `urllib.request`.
 

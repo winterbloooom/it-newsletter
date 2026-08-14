@@ -126,9 +126,6 @@ def _plain_text(context: dict, tz: ZoneInfo) -> str:
         f"비활성 {context['inactive_count']}개 제외 · {context['window_label']}"
     )
     if context["failures"]:
-        lines.append(
-            "수집 실패 "
-            f"{len(context['failures'])}건: "
-            + ", ".join(f.site for f in context["failures"])
-        )
+        detail = ", ".join(f"{f.site} ({f.reason})" for f in context["failures"])
+        lines.append(f"수집 실패 {len(context['failures'])}건: {detail}")
     return "\n".join(lines)

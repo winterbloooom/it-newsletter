@@ -80,7 +80,7 @@
       관심사 {{ interests|length }}개 · 비활성 {{ inactive_count }}개 제외 · {{ window_label }}
       {%- if failures %}<br>
       <span style="color:#B0342A;">수집 실패 {{ failures|length }}건:</span>
-      {% for failure in failures %}{{ failure.site }}{% if not loop.last %}, {% endif %}{% endfor %}
+      {% for failure in failures %}{{ failure.site }} ({{ failure.reason }}){% if not loop.last %}, {% endif %}{% endfor %}
       {%- endif %}
     </p>
   </td></tr>

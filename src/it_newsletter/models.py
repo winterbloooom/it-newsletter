@@ -199,3 +199,23 @@ class SiteResult(BaseModel):
     @property
     def ok(self) -> bool:
         return self.error is None
+
+    @property
+    def reason(self) -> str:
+        """A few words on why this site failed, for the email footer.
+
+        The footer naming only the sites turned every failure into an
+        investigation: three of the four in the first CI run collected fine
+        locally, and the log had to be opened to learn they were 403s from a
+        datacenter address rather than a broken parser.
+        """
+        if not self.error:
+            return ""
+        kind, _, detail = self.error.partition(": ")
+        detail = detail.strip()
+        if kind == "HTTPError":
+            head = detail.replace("HTTP Error ", "")
+            return f"HTTP {head.split(':')[0].strip()}"
+        if kind == "ValueError":
+            return "no articles matched"
+        return kind

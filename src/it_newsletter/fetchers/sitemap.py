@@ -31,6 +31,7 @@ from urllib.parse import urljoin, urlsplit
 from it_newsletter.fetchers._common import (
     NAV_SEGMENTS,
     Http,
+    locale_variants,
     canonical_url,
     html_soup,
     page_meta,
@@ -77,7 +78,7 @@ def fetch(
     candidates: list[tuple[str, datetime | None]] = []
     for url, lastmod_raw in entries:
         parts = urlsplit(url)
-        if not pattern.search(parts.path):
+        if not any(pattern.search(v) for v in locale_variants(parts.path)):
             continue
         if any(seg.lower() in NAV_SEGMENTS for seg in parts.path.split("/") if seg):
             continue
