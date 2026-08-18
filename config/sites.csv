@@ -95,7 +95,7 @@ Slack,https://slack.engineering/,feed,https://slack.engineering/feed,,,1,
 Dropbox,https://dropbox.tech/,feed,https://dropbox.tech/feed,,,1,
 GitHub,https://github.blog/engineering/,feed,https://github.blog/feed/,,,1,
 GitLab,https://about.gitlab.com/blog/categories/engineering/,feed,https://about.gitlab.com/releases.xml,,,1,
-Atlassian,https://www.atlassian.com/engineering,feed,https://www.atlassian.com/blog/comments/feed,,,1,
+Atlassian,https://www.atlassian.com/engineering,feed,https://www.atlassian.com/blog/comments/feed,,,0,excluded by request
 Notion,https://www.notion.com/blog/topic/engineering,html_list,https://www.notion.com/ko/blog/topic/engineering,,"{""article_regex"": ""^/blog/[^/]+/?$"", ""date_from"": ""detail""}",1,serves the Korean locale because Accept-Language asks for it; paths carry /ko
 Figma,https://www.figma.com/blog/engineering/,html_list,https://www.figma.com/blog/everything/,,"{""article_regex"": ""^/blog/[^/]+/?$"", ""date_from"": ""detail"", ""title_strip"": "" | Figma Blog"", ""max_articles"": 90}",1,"listing puts its category links first, so the article budget has to clear them"
 Canva,https://www.canva.dev/blog/engineering/,feed,https://www.canva.dev/blog/engineering/feed.xml,,,1,
