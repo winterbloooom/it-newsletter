@@ -55,9 +55,9 @@ def build(
 ) -> tuple[str, str, str]:
     """Return (subject, html, text).
 
-    `articles` arrives ranked. The split into summarized cards and one-line
-    links follows the same rule `summarize.py` used to choose what to summarize,
-    so an article can never appear as a card without its summary.
+    The split into summarized cards and one-line links comes from
+    `rank.select_top`, the same call `summarize` made to choose what to
+    summarize, so an article can never appear as a card without its summary.
     """
     tz = ZoneInfo(timezone)
     ranked = order(articles)
@@ -83,9 +83,25 @@ def build(
     subject = email.subject_format.format(
         date=f"{window_end.astimezone(tz):%m-%d}",
         count=len(articles),
-        top_title=top[0].title if top else "새 글 없음",
+        headline=_headline(ranked),
     )
     return subject, html, text
+
+
+def _headline(ranked: list[Article]) -> str:
+    """The subject's headline: the best article of the day, or that there is none.
+
+    The headline follows the ranking, not the threshold. On a quiet day nothing
+    clears `score_threshold`, but articles were still collected and still fill
+    the email's link list, so naming the best of them beats announcing "새 글
+    없음" directly after a non-zero count. Only an empty window says that.
+
+    "외" belongs here rather than in `subject_format` because it depends on
+    there being a title to trail, which the format string cannot test.
+    """
+    if not ranked:
+        return "새 글 없음"
+    return f"{ranked[0].title} 외"
 
 
 def _plain_text(context: dict, tz: ZoneInfo) -> str:

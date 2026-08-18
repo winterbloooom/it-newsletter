@@ -82,7 +82,7 @@ class EmailConfig(BaseModel):
     sender_address: str = ""
     sender_name: str = "IT Digest"
     recipients: list[str] = Field(default_factory=list)
-    subject_format: str = "[IT Digest] {date} · {count}건 · {top_title} 외"
+    subject_format: str = "[IT Digest] {date} · {count}건 · {headline}"
     show_failures: bool = True
 
 

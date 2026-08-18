@@ -45,8 +45,10 @@ email:
   # data in this file, so they come from MAIL_SENDER and MAIL_RECIPIENTS:
   # .env locally, repository secrets in CI. Setting them here would work, but
   # this file is tracked in git.
-  # Rendered into the subject line. {date}, {count}, {top_title} are available.
-  subject_format: "[IT Digest] {date} · {count}건 · {top_title} 외"
+  # Rendered into the subject line. {date}, {count}, {headline} are available.
+  # {headline} is the best article of the day followed by "외", or "새 글 없음"
+  # when the window turned up nothing at all.
+  subject_format: "[IT Digest] {date} · {count}건 · {headline}"
   # Show the collection failures in the email footer, so a parser that quietly
   # broke is visible the next morning rather than in a month.
   show_failures: true
