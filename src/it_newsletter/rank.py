@@ -116,11 +116,34 @@ def rank(
                          e, len(candidates) - start)
             break
 
+    return order(articles)
+
+
+def order(articles: list[Article]) -> list[Article]:
+    """Best first: by score, then by recency."""
     return sorted(
         articles,
         key=lambda a: (a.score or 0, a.published_at),
         reverse=True,
     )
+
+
+def select_top(
+    articles: list[Article], *, top_k: int, score_threshold: int,
+) -> list[Article]:
+    """The articles worth featuring: above the threshold, best first, at most `top_k`.
+
+    Selection is by rank, then by threshold: an article nobody would want to
+    read does not become worth reading by being the fifth-best of a quiet day.
+
+    This is the one definition of "featured". `summarize` uses it to decide what
+    costs a body fetch and a second Gemini call, and `email_builder` uses it to
+    decide what becomes a card, so an article can never appear as a card without
+    its summary. Ordering here rather than trusting the caller keeps the replay
+    path, which reads articles back from the store, on a fresh run's order.
+    """
+    ordered = order(articles)
+    return [a for a in ordered if (a.score or 0) >= score_threshold][:top_k]
 
 
 def _apply_scores(

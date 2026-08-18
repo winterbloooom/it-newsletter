@@ -20,6 +20,7 @@ from pydantic import BaseModel, Field
 from it_newsletter.fetchers._common import Http, html_soup, main_text
 from it_newsletter.llm import DailyQuotaExhausted, generate_json
 from it_newsletter.models import Article, LLMConfig
+from it_newsletter.rank import select_top
 
 logger = logging.getLogger(__name__)
 
@@ -53,15 +54,8 @@ def summarize_top(
     score_threshold: int,
     http: Http,
 ) -> list[Article]:
-    """Fill in `summary` on the best articles, in place. Returns the selection.
-
-    Selection is by rank, then by threshold: an article nobody would want to
-    read does not become worth reading by being the fifth-best of a quiet day.
-    """
-    chosen = [
-        a for a in articles
-        if (a.score or 0) >= score_threshold
-    ][:top_k]
+    """Fill in `summary` on the best articles, in place. Returns the selection."""
+    chosen = select_top(articles, top_k=top_k, score_threshold=score_threshold)
 
     if not chosen:
         logger.info("no article scored at least %d; nothing to summarize", score_threshold)

@@ -17,6 +17,7 @@ from zoneinfo import ZoneInfo
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 from it_newsletter.models import Article, EmailConfig, InterestsConfig, SiteResult
+from it_newsletter.rank import order, select_top
 
 WEEKDAYS = ("월", "화", "수", "목", "금", "토", "일")
 
@@ -59,9 +60,9 @@ def build(
     so an article can never appear as a card without its summary.
     """
     tz = ZoneInfo(timezone)
-    ranked = sorted(articles, key=lambda a: (a.score or 0, a.published_at), reverse=True)
+    ranked = order(articles)
 
-    top = [a for a in ranked if (a.score or 0) >= score_threshold][:top_k]
+    top = select_top(articles, top_k=top_k, score_threshold=score_threshold)
     top_urls = {a.url for a in top}
     rest = [a for a in ranked if a.url not in top_urls]
 
